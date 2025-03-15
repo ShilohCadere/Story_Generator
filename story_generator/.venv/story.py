@@ -1,27 +1,18 @@
 from flask import Flask, render_template, request
-import random
     
 app = Flask(__name__)
     
-story_parts = {
-    "character": ["wizard", "knight", "princess", "dragon", "horse"],
-    "setting": ["forest", "castle", "mountain", "cave"],
-    "problem": ["lost their way", "was captured", "needed help", "guarded a treasure"],
-    "solution": ["found a map", "was rescued", "helped them", "outsmarted them"]
-}
-    
-def generate_story():
-    story = ""
-    for part, options in story_parts.items():
-        story += random.choice(options) + " "
-    return story
-    
-@app.route("/", methods=["GET", "POST"])
+@app.route('/')
 def index():
-    if request.method == "POST":
-        story = generate_story()
-        return render_template("index.html", story=story)
-    return render_template("index.html")
+    return render_template('index.html')
     
-if __name__ == "__main__":
+@app.route('/submit', methods=['POST'])
+def submit():
+    name = request.form['name']
+    story_input = request.form['story_input']
+    # Process the input (e.g., add to the story)
+    updated_story = f"Once upon a time, there was a person named {name}. {story_input}"
+    return render_template('result.html', story=updated_story)
+    
+if __name__ == '__main__':
     app.run(debug=True)
