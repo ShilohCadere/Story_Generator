@@ -6,3 +6,4 @@ To run this app, please replace 'Your Secret Key' with the key associated to you
 # Future Plans
 
 -Adjust the look and feel of the app so that users can pick either light or dark mode.
+-Change form so that story element customizations occur piece by piece instead of all at once
