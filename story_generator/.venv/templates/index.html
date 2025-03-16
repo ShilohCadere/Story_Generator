@@ -4,14 +4,10 @@
     <title>Story Generator</title>
 </head>
 <body>
-    <h1>Story Generator</h1>
-    <form action="/submit" method="POST">
-    <label for="name"> Your Name:</label><br>
-    <input type="text" id="name" name="name"><br>
-    <label for="story_input">Your Input: </label><br>
-    <textarea id="story_input" name="story_input"></textarea><br>
-        
-        <button type="submit">Generate Story</button>
+    <form method="POST">
+        <label for="prompt">Enter a prompt:</label><br>
+        <textarea id="prompt" name="prompt" rows="4" cols="50"></textarea><br>
+        <input type="submit" value="Generate Story">
     </form>
     {% if story %}
         <h2>Your Story:</h2>

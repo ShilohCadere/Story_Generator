@@ -1,18 +1,18 @@
 from flask import Flask, render_template, request
-    
+from transformers import pipeline
+
 app = Flask(__name__)
-    
-@app.route('/')
+
+generator = pipeline('text-generation', model='gpt2')
+
+@app.route('/', methods=['GET', 'POST'])
 def index():
-    return render_template('index.html')
-    
-@app.route('/submit', methods=['POST'])
-def submit():
-    name = request.form['name']
-    story_input = request.form['story_input']
-    # Process the input (e.g., add to the story)
-    updated_story = f"Once upon a time, there was a person named {name}. {story_input}"
-    return render_template('result.html', story=updated_story)
+    story = None
+    if request.method == 'POST':
+        prompt = request.form['prompt']
+        story = generator(prompt, max_length=2000, num_return_sequences=1)[0]['generated_text']
+    return render_template('index.html', story=story)
+
     
 if __name__ == '__main__':
     app.run(debug=True)
