@@ -4,7 +4,6 @@ from transformers import pipeline
 app = Flask(__name__)
 
 generator = pipeline('text-generation', model='gpt2')
-
 @app.route('/', methods=['GET', 'POST'])
 def index():
     story = None
