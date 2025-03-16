@@ -1,8 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for
 import openai
 
-openai.api_key = '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'
-
+openai.api_key = 'Your Secret Key'
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
